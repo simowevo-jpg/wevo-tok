@@ -15,6 +15,7 @@
       "supportsTablet": true
     },
     "android": {
+      "package": "com.wevotok.app",
       "adaptiveIcon": {
         "backgroundColor": "#0b1020"
       }
