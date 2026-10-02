@@ -1,26 +1,21 @@
-workflows:
-  wevo-tok-android:
-    name: WEVO TOK Android APK
-    max_build_duration: 60
-
-    environment:
-      node: 20
-
-    scripts:
-      - name: Install dependencies
-        script: |
-          npm install
-
       - name: Build Android APK
         script: |
           cd apps/mobile
           npx expo install expo-system-ui
           npx expo prebuild --platform android --clean --non-interactive
 
-          # Fix React Native paths for monorepo
+          echo "===== EXPO PATH ====="
+          node -p "require.resolve('expo/package.json')"
+
+          echo "===== REACT NATIVE PATH ====="
+          node -p "require.resolve('react-native/package.json')"
+
+          echo "===== GENERATED BUILD.GRADLE ====="
+          sed -n '1,60p' android/app/build.gradle
+
+          echo "===== GENERATED SETTINGS.GRADLE ====="
+          sed -n '1,40p' android/settings.gradle
+
           cd android
           chmod +x gradlew
           ./gradlew assembleDebug --stacktrace
-
-    artifacts:
-      - apps/mobile/android/app/build/outputs/**/*.apk
