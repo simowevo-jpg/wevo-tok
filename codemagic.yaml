@@ -16,10 +16,11 @@ workflows:
           cd apps/mobile
           npx expo install expo-system-ui
           npx expo prebuild --platform android --clean --non-interactive
+
+          # Fix React Native paths for monorepo
           cd android
           chmod +x gradlew
-          ./gradlew clean
-          ./gradlew assembleDebug
+          ./gradlew assembleDebug --stacktrace
 
     artifacts:
       - apps/mobile/android/app/build/outputs/**/*.apk
