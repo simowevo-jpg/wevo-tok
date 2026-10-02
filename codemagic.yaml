@@ -1,0 +1,22 @@
+workflows:
+  wevo-tok-android:
+    name: WEVO TOK Android APK
+    max_build_duration: 60
+
+    environment:
+      node: latest
+
+    scripts:
+      - name: Install dependencies
+        script: npm install
+
+      - name: Build Android APK
+        script: |
+          cd apps/mobile
+          npx expo prebuild --platform android
+          cd android
+          chmod +x gradlew
+          ./gradlew assembleDebug
+
+    artifacts:
+      - apps/mobile/android/app/build/outputs/**/*.apk
