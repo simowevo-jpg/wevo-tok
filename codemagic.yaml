@@ -22,6 +22,6 @@ workflows:
           sed -n '1,40p' android/settings.gradle
           cd android
           chmod +x gradlew
-          ./gradlew assembleDebug --stacktrace
+         ./gradlew assembleRelease --stacktrace
     artifacts:
       - apps/mobile/android/app/build/outputs/**/*.apk
