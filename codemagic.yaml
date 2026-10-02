@@ -4,18 +4,21 @@ workflows:
     max_build_duration: 60
 
     environment:
-      node: latest
+      node: 20
 
     scripts:
       - name: Install dependencies
-        script: npm install
+        script: |
+          npm install
 
       - name: Build Android APK
         script: |
           cd apps/mobile
-          npx expo prebuild --platform android
+          npx expo install expo-system-ui
+          npx expo prebuild --platform android --clean --non-interactive
           cd android
           chmod +x gradlew
+          ./gradlew clean
           ./gradlew assembleDebug
 
     artifacts:
