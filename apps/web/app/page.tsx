@@ -56,7 +56,7 @@ export default function HomePage() {
             <p className="eyebrow">NOW LIVE</p>
             <h2>Startup Circle</h2>
           </div>
-          <button className="primary-btn">Join Room</button>
+          <a href="/login" className="primary-btn">Join Room</a>
         </header>
 
         <div className="showcase-card">
