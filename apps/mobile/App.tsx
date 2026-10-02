@@ -1,6 +1,15 @@
 import React from 'react';
-import { SafeAreaView, View, Text, StyleSheet } from 'react-native';
+import {
+  SafeAreaView,
+  View,
+  Text,
+  TouchableOpacity,
+  StyleSheet,
+  I18nManager,
+} from 'react-native';
 import { StatusBar } from 'expo-status-bar';
+
+I18nManager.forceRTL(true);
 
 export default function App() {
   return (
@@ -8,20 +17,31 @@ export default function App() {
       <StatusBar style="light" />
 
       <View style={styles.content}>
+        <View style={styles.logoCircle}>
+          <Text style={styles.logoIcon}>W</Text>
+        </View>
+
         <Text style={styles.logo}>WEVO TOK</Text>
 
-        <Text style={styles.title}>أهلاً بك 👋</Text>
+        <Text style={styles.welcome}>أهلاً وسهلاً 👋</Text>
 
-        <Text style={styles.subtitle}>
-          تطبيق المحادثات الصوتية
+        <Text style={styles.description}>
+          عالم المحادثات الصوتية
+          {'\n'}
+          تعرّف على أشخاص جدد وانضم إلى الغرف
         </Text>
 
-        <View style={styles.card}>
-          <Text style={styles.cardTitle}>التطبيق يعمل بنجاح ✅</Text>
-          <Text style={styles.cardText}>
-            WEVO TOK جاهز للعمل
-          </Text>
+        <View style={styles.buttons}>
+          <TouchableOpacity style={styles.primaryButton}>
+            <Text style={styles.primaryText}>تسجيل الدخول</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity style={styles.secondaryButton}>
+            <Text style={styles.secondaryText}>إنشاء حساب جديد</Text>
+          </TouchableOpacity>
         </View>
+
+        <Text style={styles.version}>WEVO TOK • الإصدار 1.0.0</Text>
       </View>
     </SafeAreaView>
   );
@@ -30,53 +50,95 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#0b1020',
+    backgroundColor: '#071020',
   },
 
   content: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    padding: 24,
+    paddingHorizontal: 28,
+  },
+
+  logoCircle: {
+    width: 88,
+    height: 88,
+    borderRadius: 44,
+    backgroundColor: '#2463ff',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: 18,
+  },
+
+  logoIcon: {
+    color: '#ffffff',
+    fontSize: 48,
+    fontWeight: '900',
   },
 
   logo: {
+    color: '#ffffff',
     fontSize: 32,
+    fontWeight: '900',
+    letterSpacing: 1,
+    marginBottom: 32,
+  },
+
+  welcome: {
+    color: '#ffffff',
+    fontSize: 27,
     fontWeight: '800',
-    color: '#2f6bff',
-    marginBottom: 30,
+    marginBottom: 12,
+    textAlign: 'center',
   },
 
-  title: {
-    fontSize: 28,
-    fontWeight: '700',
-    color: '#ffffff',
-    marginBottom: 10,
+  description: {
+    color: '#aeb9cf',
+    fontSize: 16,
+    lineHeight: 27,
+    textAlign: 'center',
+    marginBottom: 38,
   },
 
-  subtitle: {
-    fontSize: 17,
-    color: '#aab4cc',
-    marginBottom: 30,
-  },
-
-  card: {
+  buttons: {
     width: '100%',
-    padding: 24,
-    borderRadius: 20,
-    backgroundColor: '#151d33',
+    gap: 14,
+  },
+
+  primaryButton: {
+    height: 56,
+    borderRadius: 18,
+    backgroundColor: '#2463ff',
     alignItems: 'center',
+    justifyContent: 'center',
   },
 
-  cardTitle: {
-    fontSize: 19,
-    fontWeight: '700',
+  primaryText: {
     color: '#ffffff',
-    marginBottom: 8,
+    fontSize: 18,
+    fontWeight: '800',
   },
 
-  cardText: {
-    fontSize: 15,
-    color: '#aab4cc',
+  secondaryButton: {
+    height: 56,
+    borderRadius: 18,
+    borderWidth: 1,
+    borderColor: '#34425e',
+    backgroundColor: '#111a2d',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+
+  secondaryText: {
+    color: '#ffffff',
+    fontSize: 17,
+    fontWeight: '700',
+  },
+
+  version: {
+    position: 'absolute',
+    bottom: 22,
+    color: '#66738d',
+    fontSize: 12,
   },
 });
